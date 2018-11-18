@@ -1,0 +1,11 @@
+version: '3'
+services:
+  python:
+    # image python 3.6
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
+    volumes:
+      - ./src:/src
+    ports:
+      - 8000:8000
