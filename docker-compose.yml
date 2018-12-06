@@ -1,4 +1,6 @@
 version: '3'
+volumes:
+  pgdata:
 services:
   python:
     # image python 3.6
@@ -9,3 +11,15 @@ services:
       - ./src:/src
     ports:
       - 8000:8000
+    command: "python manage.py runserver 0.0.0.0:8000"
+  postgres:
+    # image postgres 11.1
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: dictionary
+      POSTGRES_USER: dictionary
+      POSTGRES_PASSWORD: dictionary
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432

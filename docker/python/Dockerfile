@@ -7,4 +7,8 @@ WORKDIR /src
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+COPY ./docker/python/start.sh /start.sh
+
+RUN chmod +x /start.sh
+
+ENTRYPOINT ["/start.sh"]
